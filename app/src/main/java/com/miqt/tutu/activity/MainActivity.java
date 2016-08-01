@@ -33,15 +33,6 @@ public class MainActivity extends Activity {
         bt_send = (Button) findViewById(R.id.bt_send);
         tv_results = (TextView) findViewById(R.id.tv_results);
         et_message = (EditText) findViewById(R.id.et_message);
-        bt_send.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String message = et_message.getText().toString();
-                if (message != null && !message.equals("")) {
-                    mTuringApiManager.requestTuringAPI(message);
-                }
-            }
-        });
         init();
     }
 
@@ -63,6 +54,15 @@ public class MainActivity extends Activity {
                 // 获取userid成功后，才可以请求Turing服务器，需要请求必须在此回调成功，才可正确请求
                 mTuringApiManager = new TuringApiManager(MainActivity.this);
                 mTuringApiManager.setHttpListener(myHttpConnectionListener);
+                bt_send.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String message = et_message.getText().toString();
+                        if (message != null && !message.equals("")) {
+                            mTuringApiManager.requestTuringAPI(message);
+                        }
+                    }
+                });
             }
         });
     }

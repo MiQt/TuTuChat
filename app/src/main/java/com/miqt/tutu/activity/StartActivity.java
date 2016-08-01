@@ -16,8 +16,8 @@ public class StartActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
-        BmobUser userInfo = new BmobUser();
 
+        BmobUser userInfo = new BmobUser();
         userInfo.setUsername("123");
         userInfo.setPassword("123");
         //注意：不能用save方法进行注册

@@ -1,15 +1,6 @@
 package com.miqt.tutu.app;
 
 import android.app.Application;
-import android.util.Log;
-
-import com.miqt.tlchat.tulingchat.BuildConfig;
-import com.miqt.tutu.activity.MainActivity;
-import com.turing.androidsdk.InitListener;
-import com.turing.androidsdk.SDKInit;
-import com.turing.androidsdk.SDKInitBuilder;
-import com.turing.androidsdk.TuringApiManager;
-
 
 import cn.bmob.v3.Bmob;
 
