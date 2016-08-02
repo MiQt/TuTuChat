@@ -28,6 +28,7 @@
             </intent-filter>
         </activity>
         <activity android:name="com.miqt.tutu.activity.MainActivity"></activity>
+        <activity android:name="com.miqt.tutu.activity.LoginActivity"></activity>
     </application>
 
 </manifest>

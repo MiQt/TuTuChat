@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">tulingchat</string>
+    <string name="action_sign_in">注册</string>
+    <string name="reg_text">注册</string>
+    <string name="prompt_username">用户名</string>
+    <string name="prompt_password">密码</string>
+    <string name="action_sign_in_short">注册</string>
+    <string name="prompt_password_agarn">注册</string>
+    <string name="action_regst">注册</string>
 </resources>
