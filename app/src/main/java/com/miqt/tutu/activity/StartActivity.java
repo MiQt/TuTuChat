@@ -10,7 +10,6 @@ import android.view.WindowManager;
 
 import com.miqt.tlchat.tulingchat.R;
 
-import cn.bmob.v3.BmobUser;
 
 /**
  * 启动界面

@@ -5,7 +5,6 @@ import turing.os.http.core.HttpConnectionListener;
 import turing.os.http.core.RequestResult;
 
 import android.app.Activity;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
