@@ -5,6 +5,7 @@ import turing.os.http.core.HttpConnectionListener;
 import turing.os.http.core.RequestResult;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -12,12 +13,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.miqt.tlchat.tulingchat.R;
 import com.miqt.tutu.app.MyAppcation;
+import com.miqt.tutu.entity.Message;
 import com.turing.androidsdk.TuringApiManager;
 
 public class MainActivity extends Activity {
-    private static final String TAG = "MainActivity";
+    private static final String TAG = "MainActivity，fdssaff";
     private TuringApiManager mTuringApiManager;
 
     Button bt_send;
@@ -39,7 +42,9 @@ public class MainActivity extends Activity {
             public void onClick(View v) {
                 String message = et_message.getText().toString();
                 if (!message.equals("")) {
+                    tv_results.append("\n[我]" + message);
                     mTuringApiManager.requestTuringAPI(message);
+                    et_message.getText().clear();
                 }
             }
         });
@@ -53,7 +58,9 @@ public class MainActivity extends Activity {
         @Override
         public void onSuccess(RequestResult result) {
             if (result != null) {
-                tv_results.setText(result.getContent().toString());
+                Log.d(TAG, result.getContent().toString());
+                Message message = new Gson().fromJson(result.getContent().toString(), Message.class);
+                tv_results.append("\n[果果]" + message.getText());
             }
         }
 

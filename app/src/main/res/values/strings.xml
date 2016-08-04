@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">tulingchat</string>
+    <string name="app_name">TuTu</string>
     <string name="action_sign_in">注册</string>
     <string name="reg_text">注册</string>
     <string name="prompt_username">用户名</string>
