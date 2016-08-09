@@ -24,8 +24,7 @@ public class MyAppcation extends Application {
         x.Ext.init(this);
         // 初始化  SDK
         Bmob.initialize(this, "31558ea36a284e51b5a572035f7e277c");
-
-    }
+   }
 
     public TuringApiManager getTuringApiManager() {
         return mTuringApiManager;
