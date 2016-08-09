@@ -7,4 +7,5 @@
     <string name="action_sign_in_short">注册</string>
     <string name="prompt_password_agarn">注册</string>
     <string name="action_regst">注册</string>
+    <string name="version_name">v</string>
 </resources>
