@@ -6,6 +6,9 @@ import turing.os.http.core.RequestResult;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.telephony.TelephonyManager;
@@ -14,6 +17,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -22,6 +26,9 @@ import com.google.gson.Gson;
 import com.miqt.tlchat.tulingchat.R;
 import com.miqt.tutu.app.MyAppcation;
 import com.miqt.tutu.entity.Message;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.turing.androidsdk.InitListener;
 import com.turing.androidsdk.SDKInit;
 import com.turing.androidsdk.SDKInitBuilder;
@@ -110,6 +117,25 @@ public class MainActivity extends Activity {
                 TextView textView = (TextView) view.findViewById(R.id.tv_message_there);
                 textView.setText(message.getText());
                 ll_results.addView(view);
+                String url = message.getUrl();
+                if (url != null && !url.equals("")) {
+                    View urlview = mLayoutInflater.inflate(R.layout.message_item_there,
+                            ll_results, false);
+                    TextView tv_url = (TextView) urlview.findViewById(R.id.tv_message_there);
+                    tv_url.setTextColor(Color.BLUE);
+                    tv_url.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent();
+                            intent.setAction("android.intent.action.VIEW");
+                            Uri content_url = Uri.parse("http://www.jb51.net");
+                            intent.setData(content_url);
+                            startActivity(intent);
+                        }
+                    });
+                    tv_url.setText(message.getUrl());
+                    ll_results.addView(urlview);
+                }
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
