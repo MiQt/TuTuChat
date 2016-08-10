@@ -7,11 +7,15 @@ import turing.os.http.core.RequestResult;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
 import android.telephony.TelephonyManager;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -28,15 +32,21 @@ public class MainActivity extends Activity {
     private TuringApiManager mTuringApiManager;
 
     Button bt_send;
-    TextView tv_results;
+    LinearLayout ll_results;
     EditText et_message;
+    private LayoutInflater mLayoutInflater;
+    ScrollView mScrollView;
+    private Handler handler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mLayoutInflater = LayoutInflater.from(this);
+        handler = new Handler();
         bt_send = (Button) findViewById(R.id.bt_send);
-        tv_results = (TextView) findViewById(R.id.tv_results);
+        mScrollView = (ScrollView) findViewById(R.id.scrolview);
+        ll_results = (LinearLayout) findViewById(R.id.ll_results);
         et_message = (EditText) findViewById(R.id.et_message);
         MyAppcation app = (MyAppcation) getApplication();
         mTuringApiManager = app.getTuringApiManager();
@@ -63,8 +73,18 @@ public class MainActivity extends Activity {
                     public void onClick(View v) {
                         String message = et_message.getText().toString();
                         if (!message.equals("")) {
-                            tv_results.append("\n[我]" + message);
                             mTuringApiManager.requestTuringAPI(message);
+                            View view = mLayoutInflater.inflate(R.layout.message_item_self,
+                                    ll_results, false);
+                            TextView textView = (TextView) view.findViewById(R.id.tv_message_self);
+                            textView.setText(message);
+                            ll_results.addView(view);
+                            handler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    mScrollView.fullScroll(ScrollView.FOCUS_DOWN);
+                                }
+                            });
                             et_message.getText().clear();
                         }
                     }
@@ -85,7 +105,17 @@ public class MainActivity extends Activity {
                 Log.d(TAG, result.getContent().toString());
                 Message message = new Gson().fromJson(result.getContent().toString(), Message
                         .class);
-                tv_results.append("\n[果果]" + message.getText());
+                View view = mLayoutInflater.inflate(R.layout.message_item_there,
+                        ll_results, false);
+                TextView textView = (TextView) view.findViewById(R.id.tv_message_there);
+                textView.setText(message.getText());
+                ll_results.addView(view);
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        mScrollView.fullScroll(ScrollView.FOCUS_DOWN);
+                    }
+                });
             }
         }
 
