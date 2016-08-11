@@ -117,7 +117,7 @@ public class MainActivity extends Activity {
                 TextView textView = (TextView) view.findViewById(R.id.tv_message_there);
                 textView.setText(message.getText());
                 ll_results.addView(view);
-                String url = message.getUrl();
+                final String url = message.getUrl();
                 if (url != null && !url.equals("")) {
                     View urlview = mLayoutInflater.inflate(R.layout.message_item_there,
                             ll_results, false);
@@ -128,7 +128,7 @@ public class MainActivity extends Activity {
                         public void onClick(View v) {
                             Intent intent = new Intent();
                             intent.setAction("android.intent.action.VIEW");
-                            Uri content_url = Uri.parse("http://www.jb51.net");
+                            Uri content_url = Uri.parse(url);
                             intent.setData(content_url);
                             startActivity(intent);
                         }
